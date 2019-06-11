@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="AppManager.Views.UserUnit.UpdateUserView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:AppManager.Views"
+             xmlns:cm="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="800"
+             d:DesignWidth="1200">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20,20">
+                <TextBlock FontSize="30"
+                           Margin="0,0,0,30">个人信息修改</TextBlock>
+                <Grid Margin="0,10"
+                      Height="500">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                 
+                    </Grid.ColumnDefinitions>
+                    <pu:PUCard Grid.Column="0"
+                               Grid.RowSpan="1"
+                               Margin="5,0,5,5">
+                        <StackPanel Margin="0,5">
+                            <pu:PUTextBox Margin="10,0,10,0"
+                                          Watermark="用户名"
+                                          IsClearButtonShow="True"
+                                          BorderCornerRadius="2"                                      
+                                          TextBoxStyle="IconGroup"
+                                          Height="32"
+                                          Icon=""
+                                          Width="300"
+                                          Text="{Binding User.UserName}"
+                                          ></pu:PUTextBox>
+                            <pu:PUTextBox Margin="10,10,10,0"
+                                          Watermark="账号"
+                                          IsClearButtonShow="True"
+                                          BorderCornerRadius="2"
+                                          TextBoxStyle="IconGroup"
+                                          Icon=""
+                                          Height="32"
+                                          Width="300"
+                                          Text="{Binding User.Account}" IsEnabled="False"></pu:PUTextBox>
+                            <pu:PURadioButton Margin="0,0,200,0"
+                                              HorizontalAlignment="Center"                                
+                                              Height="32"
+                                              Content="男"
+                                              IsChecked="True"
+                                              cm:Message.Attach="[Event Click]=[Action ChangeSex($source)]"
+                                              ></pu:PURadioButton>
+                            <pu:PURadioButton Margin="0,0,200,0"
+                                              HorizontalAlignment="Center"                                  
+                                              Height="32"
+                                              Content="女"
+                                              cm:Message.Attach="[Event Click]=[Action ChangeSex($source)]"
+                                              ></pu:PURadioButton>
+                            <pu:PUTextBox Margin="10,10,10,0"
+                                          Watermark="手机号"
+                                          IsClearButtonShow="True"
+                                          BorderCornerRadius="2"
+                                          TextBoxStyle="IconGroup"
+                                          Icon=""
+                                          Text="{Binding User.MobilePhone}"
+                                          Height="32"
+                                          Width="300"></pu:PUTextBox>
+                            <pu:PUPasswordBox Margin="10,10,10,0"
+                                              Watermark="密码"
+                                              IsShowPwdButtonShow="True"
+                                              BorderCornerRadius="2"
+                                              PasswordBoxStyle="IconGroup"
+                                              Icon=""
+                                              Height="32"
+                                              Password="{Binding User.Password,Mode=TwoWay}"
+                                              Width="300"></pu:PUPasswordBox>
+                            <pu:PUPasswordBox Margin="10,10,10,0"
+                                              Watermark="确认密码"
+                                              IsShowPwdButtonShow="True"
+                                              BorderCornerRadius="2"
+                                              PasswordBoxStyle="IconGroup"
+                                              Icon="" 
+                                              Password="{Binding VerifyPassword,Mode=TwoWay}"
+                                              Height="32"
+                                              Width="300"></pu:PUPasswordBox>
+                            <pu:PUButton Content="修改"
+                                         cm:Message.Attach="[Event Click]=[Action UpdateUser]"
+                                         Margin="10,10,10,0"
+                                         ButtonStyle="General"
+                                         Height="35"
+                                         Width="300"></pu:PUButton>
+                        </StackPanel>
+                    </pu:PUCard>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

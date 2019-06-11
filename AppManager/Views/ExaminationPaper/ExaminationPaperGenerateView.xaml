@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="AppManager.Views.ExaminationPaper.ExaminationPaperGenerateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:AppManager.Views"
+             xmlns:cm="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="800"
+             d:DesignWidth="1200">
+    <Grid>
+     
+            <StackPanel Margin="20,20">
+                <TextBlock FontSize="30"
+                           Margin="0,0,0,30">试卷导出管理</TextBlock>
+                <Grid Margin="0,10"
+                      Height="600">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer Grid.Column="1"
+                                  Grid.ColumnSpan="1"
+                                  VerticalScrollBarVisibility="Auto">
+                        <StackPanel   VerticalAlignment="Top"
+                                      HorizontalAlignment="Center"
+                                      Margin="0,20,0,20">
+                            <Grid >
+                                <pu:PUTextBox Text="{Binding SearchText,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                      Watermark="输入题目内容搜索"
+                                                      IsClearButtonShow="True"
+                                                      pu:Helper.ColumnDefinition="4*" Width="200" />
+                                <Grid pu:Helper.ColumnDefinition="0.1*" />
+                                <pu:PUButton IsDefault="True"
+                                                     pu:Helper.ColumnDefinition="*"
+                                                     Content="Search"
+                                                     cm:Message.Attach="[Event Click]=[Action Search]" />
+                            </Grid>
+                      
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="45*"/>
+                                    <ColumnDefinition Width="71*"/>
+                                </Grid.ColumnDefinitions>
+                                <ScrollViewer VerticalAlignment="Top"
+                                         HorizontalAlignment="Center"
+                            
+                             Grid.ColumnSpan="2">
+                                    <StackPanel Margin="10,10">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                        <DataGrid ItemsSource="{Binding TesPaperModelList}"
+                                              SelectedItem="{Binding SelectedItem}"
+                                  Margin="0,0,0,20">
+                                            
+                                            <DataGrid.ContextMenu>
+                                                <ContextMenu>
+                                                    <MenuItem Header="查看"  Command="{Binding GenerateTestPaperWord}" />
+                                                    <!--<MenuItem Header="查看"  Command="{Binding LookTestPaperWord}" />-->
+                                                    <MenuItem Header="打印"  Command="{Binding PrintTestPaperWord}" />
+                                                </ContextMenu>
+                                            </DataGrid.ContextMenu>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Width="0.5*"
+                                                    Header="Id"
+                                                    Binding="{Binding TestPaperId}" />
+                                                <DataGridTextColumn Width="0.5*"
+                                                    Header="科目"
+                                                    Binding="{Binding SubjectName}" />
+                                                <DataGridTextColumn Width="*"
+                                                    Header="试卷标题"
+                                                    Binding="{Binding Title}" />
+                                                <DataGridTextColumn Width="*"
+                                                    Header="试卷副标题"
+                                                    Binding="{Binding Subtitle}" />
+                                                <DataGridTemplateColumn Width="5*"
+                                                        Header="试卷内容简要">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock TextWrapping="Wrap"
+                                                       Text="{Binding Content}"
+                                                       Height="Auto"
+                                                       Margin="0,5" />
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </ScrollViewer>
+                                </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
+                     
+                    </StackPanel>
+                    </ScrollViewer>
+           
+               
+                </Grid>
+            </StackPanel>
+
+  
+    </Grid>
+</UserControl>

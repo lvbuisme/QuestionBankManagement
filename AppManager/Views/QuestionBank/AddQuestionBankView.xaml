@@ -1,0 +1,183 @@
+﻿<UserControl x:Class="AppManager.Views.QuestionBank.AddQuestionBankView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pu="clr-namespace:Panuon.UI;assembly=Panuon.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:AppManager.Views"
+             xmlns:cm="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="800"
+             d:DesignWidth="1200">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20,20">
+                <TextBlock FontSize="30"
+                           Margin="0,0,0,30">添加题目</TextBlock>
+                <Grid Margin="0,10"
+                      Height="500">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <pu:PUCard Grid.Column="0"
+                               Grid.RowSpan="5"
+                               Grid.ColumnSpan="5"
+                               Margin="5,0,5,5">
+                        <StackPanel Margin="0,5">
+                            <Grid Width="250"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                <TextBlock pu:Helper.ColumnDefinition="2*"
+                                               Text="题目类型："
+                                                HorizontalAlignment="Right"
+                                               VerticalAlignment="Center"/>
+                                <pu:PUComboBox 
+                                           pu:Helper.ColumnDefinition="3*"
+                                           SearchMode="{Binding SearchMode}"
+                                           DeleteMode="{Binding DeleteMode}"
+                                           IsEditable="{Binding EditableIsChecked}"
+                                           BindingItems="{Binding QuestionTypesItems, Mode=TwoWay}"
+                                           SelectedValuePath="Value"
+                                           SelectedValue="{Binding QuestionTypesValue,Mode=TwoWay}">
+                                </pu:PUComboBox>
+                            </Grid>
+                            <Grid Width="250"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                <TextBlock pu:Helper.ColumnDefinition="2*"
+                                               Text="科目："
+                                                HorizontalAlignment="Right"
+                                               VerticalAlignment="Center"/>
+                                <pu:PUComboBox 
+                                            pu:Helper.ColumnDefinition="3*"
+                           
+                                           SearchMode="{Binding SearchMode}"
+                                           DeleteMode="{Binding DeleteMode}"
+                                           IsEditable="{Binding EditableIsChecked}"
+                                           BindingItems="{Binding SubjectItems, Mode=TwoWay}"
+                                           SelectedValuePath="Value"
+                                           SelectedValue="{Binding SubjectValue,Mode=TwoWay}">
+                                </pu:PUComboBox>
+
+                            </Grid>
+
+                            <Grid Width="250"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                <TextBlock pu:Helper.ColumnDefinition="2*"
+                                               Text="知识点："
+                                                HorizontalAlignment="Right"
+                                               VerticalAlignment="Center"/>
+                                <pu:PUComboBox 
+                                          pu:Helper.ColumnDefinition="3*"
+                                         
+                                           SearchMode="{Binding SearchMode}"
+                                           DeleteMode="{Binding DeleteMode}"
+                                           IsEditable="{Binding EditableIsChecked}"
+                                           BindingItems="{Binding KnowledgePointItems, Mode=TwoWay}"
+                                           SelectedValuePath="Value"
+                                           SelectedValue="{Binding KnowledgePointValue,Mode=TwoWay}">
+                                </pu:PUComboBox>
+                            </Grid>
+                            <Grid Width="400"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                <TextBlock   pu:Helper.ColumnDefinition="1*"
+                                               Text="难度："
+                                                HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"/>
+                                <pu:PUSlider Margin="50,0,0,10"
+                                        pu:Helper.ColumnDefinition="3*"
+                                     Minimuim="1"
+                                     Maximuim="10"
+                                     Value="{Binding GradeDifficulty ,Mode=TwoWay}"/>
+                            </Grid>
+                         
+                            <Grid Width="250"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                <pu:PUCheckBox Height="30"
+                                               pu:Helper.ColumnDefinition="2*"
+                                               IsEnabled="False"
+                                          IsChecked="{Binding HasOption}"
+                                             Content="是否有选项"
+                                               HorizontalAlignment="Center"
+                                             CheckBoxStyle="Switch"/>
+                            </Grid>
+                            <Grid Width="600"
+                                      Height="30"
+                                      Margin="0,0,0,10">
+                                <pu:PUTextBox pu:Helper.ColumnDefinition="1*" 
+                                                Margin="10,0,0,0"
+                                              IsEnabled="{Binding HasOption}"
+                                              Watermark="选项一"
+                                                  Text="{Binding Option1 ,Mode=TwoWay}" />
+                                <pu:PUTextBox pu:Helper.ColumnDefinition="1*"
+                                               Watermark="选项二"
+                                                 IsEnabled="{Binding HasOption,Mode=TwoWay}"
+                                              Margin="10,0,0,0"
+                                                  Text="{Binding Option2 ,Mode=TwoWay}" />
+                                <pu:PUTextBox pu:Helper.ColumnDefinition="1*" 
+                                                Margin="10,0,0,0"
+                                               Watermark="选项三"
+                                                 IsEnabled="{Binding HasOption}"
+                                                  Text="{Binding Option3 ,Mode=TwoWay}" />
+                                <pu:PUTextBox pu:Helper.ColumnDefinition="1*"
+                                              Margin="10,0,0,0"
+                                               Watermark="选项四"
+                                                 IsEnabled="{Binding HasOption}"
+                                               Text="{Binding Option4 ,Mode=TwoWay}" />
+
+                            </Grid>
+                         
+                            <pu:PUTextBox 
+                                          Watermark="题目内容"
+                                          IsClearButtonShow="False"
+                                          BorderCornerRadius="1"
+                                          TextBoxStyle="General"
+                                          Text="{Binding Content}"
+                                           TextWrapping="Wrap"
+                                           MinHeight="100"
+                                          Width="600"></pu:PUTextBox>
+                            <Grid Width="250"
+                                      Height="32"
+                                      Margin="0,0,0,10">
+                                <TextBlock pu:Helper.ColumnDefinition="2*"
+                                               Text="题目分数："
+                                                HorizontalAlignment="Right"
+                                               VerticalAlignment="Center"/>
+                                <pu:PUTextBox 
+                                          IsClearButtonShow="True"
+                                          BorderCornerRadius="2"
+                                          TextBoxStyle="General"
+                                          Text="{Binding Score}"
+                                          IsEnabled="{Binding IsFixedScore}"
+                                          Height="32"
+                                        pu:Helper.ColumnDefinition="3*"></pu:PUTextBox>
+                            </Grid>
+                           
+                            <pu:PUButton Content="添加"
+                                         cm:Message.Attach="[Event Click]=[Action AddExaminationQuestion]"
+                                         Margin="10,10,10,0"
+                                         ButtonStyle="General"
+                                         Height="35"
+                                         Width="300"></pu:PUButton>
+                         
+                        </StackPanel>
+                    </pu:PUCard>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
